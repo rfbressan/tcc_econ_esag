@@ -1,0 +1,66 @@
+% ---------------------
+% Pacotes OBRIGATÓRIOS
+% ---------------------
+\usepackage{lastpage}			% Usado pela Ficha catalográfica
+\usepackage{indentfirst}			% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}			     	% Controle das cores
+\usepackage{graphicx}	         % Inclusão de gráficos
+\usepackage{epsfig,subfig}		% Inclusão de figuras
+\usepackage{microtype} 			% Melhorias de justificação
+\usepackage[brazil]{babel} % Pacote de tradução
+% ---------------------
+		
+% ---------------------
+% Pacotes ADICIONAIS
+% ---------------------
+\usepackage{lipsum}						% Geração de dummy text
+\usepackage{amsmath,amssymb,mathrsfs, amsthm}	% Comandos matemáticos avançados 
+\usepackage{setspace}  					% Para permitir espaçamento simples, 1 1/2 e duplo
+\usepackage{verbatim}					% Para poder usar o ambiente "comment"
+\usepackage{tabularx} 					% Para poder ter tabelas com colunas de largura auto-ajustável
+\usepackage{afterpage} 					% Para executar um comando depois do fim da página corrente
+\usepackage{url} 						% Para formatar URLs (endereços da Web)
+\usepackage{todonotes}  		% Lista de afazeres To-dos
+\usepackage{enumitem}					% Fazer enumerações por letras ou números nos itens
+\usepackage{float}							% Controla a posição de figuras e tabelas
+\usepackage{longtable}					% Tabelas que se estendem por mais de uma página
+\usepackage{booktabs}					% Tabelas com multicolunas
+\usepackage{makecell}					% Notas de rodapé da tabela com várias linhas
+% ---------------------
+
+% ---------------------
+% Pacotes de CITAÇÕES
+% ---------------------
+\usepackage[brazilian,hyperpageref]{backref}	% Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}				% Citações padrão ABNT (alfa)
+%\usepackage[num]{abntex2cite}				% Citações padrão ABNT (numericas)
+% ---------------------
+
+% Configurações de CITAÇÕES para abntex2 e ambiente de teoremas e definições
+\include{extras/conf_citacoes}
+
+% Inclusão de dados para CAPA e FOLHA DE ROSTO (título, autor, orientador, etc.)
+\include{extras/dados}
+
+% Inclui Configurações de aparência do PDF Final
+\include{extras/conf_pdf}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+% O tamanho da identação do parágrafo é dado por:
+\setlength{\parindent}{1.5cm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+
+% A identação e margens de itemizações deve ser igual ao parágrafo
+\setlength{\leftmargini}{1.7cm}
+
+% ---------------------
+% Compila o indice
+% ---------------------
+\makeindex
+% ---------------------

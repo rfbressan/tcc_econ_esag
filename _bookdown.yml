@@ -1,0 +1,14 @@
+book_filename: "tcc"
+language:
+  ui:
+    chapter_name: "Capítulo "
+    appendix_name: "Apêndice " 
+  label:
+    fig: 'Figura '
+    tab: 'Tabela '
+    eq: 'Equação '
+    thm: 'Teorema '
+    cor: 'Corolario '
+    def: 'Definição '
+delete_merged_file: true
+new_session: true

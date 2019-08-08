@@ -1,0 +1,33 @@
+# Introdução {#introducao}
+
+Neste Capítulo[^11] iremos apresentar os instrumentos financeiros conhecidos como opções. Existem dois tipos de opção. Uma opção de compra dá ao detentor o direito de comprar o ativo subjacente até uma determinada data por um determinado preço. Uma opção de venda dá ao titular o direito de vender o ativo subjacente até uma determinada data por um determinado preço.
+
+Alguns termos importantes para o melhor entendimento deste Capítulo são: “Ativo subjacente”, que é o ativo negociado no contrato, “data de vencimento”, no caso do modelo americano é até a data limite para exercer a opção de compra e no modelo europeu é na data final em que a opção de compra pode ou não ser exercida (serão discutidos mais detalhes sobre estas modalidades posteriormente) e “preço de exercício” (strike), é o valor a ser pago pelo ativo de acordo com o contrato. As opções americanas podem ser exercidas a qualquer momento até a data de vencimento. Por sua vez, as opções europeias podem ser exercidas somente na própria data de vencimento.
+
+As opções europeias são geralmente mais fáceis de analisar do que as opções americanas, e algumas das propriedades de uma opção americana são frequentemente deduzidas daquelas de sua contraparte europeia.
+
+A opção de compra (call) dá ao comprador da opção o **direito de comprar** o ativo subjacente pelo preço de exercício. A opção de venda (put) dá ao comprador da opção o **direito de vender** o ativo subjacente pelo preço combinado no contrato na data futura.
+
+O preço de uma opção de compra diminui à medida que o preço de exercício
+aumenta, enquanto o preço de uma opção de venda aumenta à medida que o preço de
+exercício aumenta. Ambos os tipos de opção tendem a se tornar mais valiosas à medida que seu tempo até o vencimento aumenta. Na verdade existem seis fatores que afetam o preço de uma opção de ação, por exemplo:
+
+1. O preço atual da ação, $S_0$
+2. O preço de exercício, $K$
+3. O tempo para expiração, $\tau$
+4. A volatilidade do preço das ações, $\sigma$
+5. A taxa de juros livre de risco, $r$
+6. Os dividendos que se espera sejam pagos, $q$
+
+Observamos que existem quatro tipos de participantes nos mercados de opções:
+
+- Compradores de calls
+- Vendedores de calls
+- Compradores de puts
+- Vendedores de puts
+
+Os compradores são referidos como tendo posições _long_, vendedores são referidos
+como tendo posições _short_. Vender uma opção também é conhecido como lançar a opção ou subscrever.
+
+
+[^11]: Artigo originalmente escrito por Glauber Naue e Erik Kawano, adaptado por Rafael F. Bressan para este livro.

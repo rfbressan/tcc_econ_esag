@@ -1,0 +1,21 @@
+bookdown::gitbook:
+  css: style.css
+  config:
+    toc:
+      before: |
+        <li><a href="./">Introdução a Superfície de Volatilidade</a></li>
+      after: |
+        <li><a href="https://bookdown.org/" target="blank">Published with bookdown</a></li>
+    edit: https://github.com/rfbressan/vol_surface_gitbook/edit/master/%s
+    download: ["pdf"]
+    sharing:
+      linkedin: yes
+      github: yes
+      twitter: no
+      facebook: no
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: xelatex
+  #citation_package: biblatex
+  keep_tex: yes
