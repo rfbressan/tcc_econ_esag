@@ -10,29 +10,52 @@ output:
       in_header: preamble.tex
       before_body: beforebody.tex
       #after_body: afterbody.tex
-    latex_engine: xelatex
-    #citation_package: biblatex
+    latex_engine: pdflatex #xelatex
+    citation_package: biblatex
     keep_tex: yes
     toc: false
 documentclass: abntex2
 bibliography: [library.bib]
-#link-citations: yes
+biblio-style: "abnt"
+link-citations: yes
 fontsize: 12pt
-classoption: oneside
+classoption: 
+  - oneside
+  - openright
+  - a4paper
+  - brazil
 geometry: margin=1in
 ---
 
-# Prefácio {-}
+# INTRODUÇÃO
 
-Este é um pequeno resumo, elaborado na forma de livro, sobre os estudos realizados pelo núcleo de derivativos e riscos do [Clube de finanças ESAG](https://clubedefinancas.com.br).
+Suponha que se deseja precificar uma opção de compra sobre uma ação, vamos denotar o preço desta _call_ de $f_t$. Sabemos que na data de expiração, $T$, da opção de compra seu preço será: $f_T=max(S_T - K, 0)$, onde $S_T$ é o preço da ação subjacente na data $T$ e $K$ é o preço de exercício da opção. Podemos criar um portfólio que envolva um ativo livre de risco, com preço $B_t$ e a ação objeto do derivativo, $S_t$, que recrie o mesmo valor de pagamento que a opção na data de expiração. Ou seja, criamos o portfólio de replicação $P_t=\Delta S_t + b B_t$, no qual devemos escolher os valores de $\Delta$ e $b$ de tal forma que $f_T = P_T$.
 
-Os estudos realizados pelos membros do núcleo foram sendo apresentados na forma de artigos no blog do Clube. A partir destes artigos foi feita esta coletânea de forma a apresentar todo o conteúdo em local único para facilitar a assimilação dos membros futuros e leitores de nosso blog.
+Este portfólio formado pela venda do ativo livre de risco e compra do ativo objeto é denominado **portfólio de replicação**, pois, ele fornece um fluxo de caixa igual ao derivativo que buscamos precificar. Ao adicionarmos ao portfólio de replicação a venda (ou seja, o negativo) do derivativo, temos um portfólio _hedgeado_, onde não existe mais incerteza com relação ao seu retorno esperado.
 
-## Sobre os Autores
+## PROBLEMA
 
-**Rafael Felipe Bressan**
+\begin{equation}
+dS_t=\mu S_t+\sigma S_t dW_t 
+(\#eq:ds)
+\end{equation}
 
-Formado em Engenharia de Controle e Automação Industrial pela UFSC e aluno de graduação do curso de Ciências Econômicas na UDESC/Esag. Membro do Clube de Finanças Esag e gerente do núcleo de pesquisa em riscos e derivativos. 
+\lipsum[1]
 
-Se interessa por finanças quantitativas, modelagem e controle de riscos e desenvolveu, durante a elaboração deste livro, grande curiosidade sobre precificação de derivativos. Gosta de programar em [R](https://cran.r-project.org/), liguagem com a qual elaborou este próprio livro e está aprendendo [Python](https://www.python.org/).
+Agora é possível referenciar a equação \@ref(eq:ds) com o comando `\@ref(eq:ds)`.
+
+## JUSTIFICATIVA
+
+Inserir código do R que gere gráficos também é muito simples.
+
+```{r grafico, echo=TRUE, fig.cap="Gráfico gerado pelo R"}
+library(ggplot2)
+
+ggplot(mpg, aes(displ, hwy, colour = class)) + 
+  geom_point()
+```
+
+## OBJETIVOS
+
+Link são criados facilmente na escrita com [Markdown](https://daringfireball.net/projects/markdown/syntax#link).
 

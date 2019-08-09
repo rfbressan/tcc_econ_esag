@@ -1,24 +1,15 @@
-# Revisão Bibliográfica {#revisao}
+# REVISÃO DE LITERATURA {#revisao}
 
-Neste capítulo abordaremos um assunto técnico, mas muito utilizado e de fudamental importância para a precificação de instrumentos derivativos. Será apresentado o conceito de processos estocásticos - PE, e sua aplicação no mundo das finanças.
+Citações podem ser feitas como em @Gatheral2014 e também utilizando o padrão [@Gatheral2004]
 
-@Gatheral2014 e também @Gatheral2004
+Tabelas são criadas através dos cálculos no código em R e apresentadas no documento de forma automática.
 
-Um processo estocástico é a evolução temporal de uma determinada variável de interesse que pode assumir valores aleatórios em cada ponto no tempo. Em outras palavras, o caminho que a variável segue ao longo do tempo evolui de maneira incerta. Estes processos podem se dar em tempo discreto ou em tempo contínuo. Processo em tempo discreto são aqueles onde o valor da variável pode se alterar somente em intervalos pré-definidos de tempo, por exemplo ao final do dia. Em processos em tempo contínuo, o valor de nossa variável está constantemente em mudança, de forma aleatória seguindo alguma distribuição de probabilidades.
+```{r tabela, echo=TRUE, results="asis"}
+fit <- lm(Sepal.Width ~ Petal.Length + Petal.Width, iris)
+stargazer::stargazer(fit, title = "Resultado da regressão linear.", 
+                     suppress.errors = TRUE,
+                     header = FALSE)
+```
 
-Estes processos são muito importantes em finanças pois, é amplamente aceito que a evolução do preço de ativos financeiros pode ser modelado por um PE em tempo contínuo, sendo este modelo portanto, a base para a teoria de precificação de ativos e da qual os derivativos fazem extenso uso. Aprender sobre a evolução temporal do preço de uma ação através de um processo estocástico é o primeiro passo para saber como atribuir um preço a uma opção sobre esta ação, por exemplo.
+Os textos de referência para RMarkdown são [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) e [bookdown: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/) ambos disponíveis de forma gratuita e leitura **obrigatória** para fazer o maior proveito das ferramentas.
 
-Deve ser notado também que apesar de o preço dos ativos serem **observados** apenas em intervalos discretos de tempo (apenas quando existe transação) e assumirem valores também discretos (múltiplos de um centavo), o preço e sua evolução estão ocorrendo continuamente, nossas observações que são discretas. Desta forma os processos em tempo contínuos são ideais para este tipo de modelagem.
-
-## Processos de Markov {#markov}
-
-Uma primeira definição de deve-se fazer para estudar PE aplicados a evolução do preço de ações é o conceito de processo de Markov. Este tipo de processo é tal que o histórico do processo que o levou até seu estado atual, é **irrelevante** para a previsão de seu estado futuro. Ou seja, toda a informação da história do processo já está contida no seu valor atual. Quando consideramos que preços de ativos seguem um processo de Markov, estamos assumindo válida pelo menos a forma fraca de mercados eficientes.
-
-Uma implicação desta suposição, verificada empiricamente, é que não se pode obter lucros apenas seguindo padrões históricos do preço e extrapolando-os no futuro. Outra, mais importante para nossos processos, é que as distribuições de probabilidade que a variável aleatória segue em cada ponto no tempo são **independentes**.
-
-## Movimento Browniano {#mb}
-
-Suponha um processo de Markov, que para fins de simplificação consideraremos em tempo discretos. Se a distribuição de probabilidade para o próximo incremento no valor do processo for uma Normal com média zero e variância unitária, podemos representar este incremento por $\phi(0, 1)$. Como este é um processo de Markov, o segundo incremento será independente do primeiro e terá novamente a mesma distribuição de probabilidade. Qual seria então, a partir do período inicial até o segundo período, a distribuição de probabilidade dos possíveis valores de nosso hipotético processo? A reposta é a soma de duas normais $\phi(0, 1)$ que resulta em $\phi(0, 2)$. Se assim continuarmos a fazer previsões para T períodos a frente, nossa distribuição terá densidade $\phi(0, T)$. 
-
-
-O Movimento Browniano Geométrico aqui demonstrado serve de base para o famoso modelo **Black \& Scholes** de precificação de opções, o qual assume que o ativo subjacente à opção (por exemplo, a ação de uma empresa) tem seu preço formado por um processo MBG.

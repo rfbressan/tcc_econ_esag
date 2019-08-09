@@ -3,11 +3,10 @@
 % ---------------------
 \usepackage{lastpage}			% Usado pela Ficha catalográfica
 \usepackage{indentfirst}			% Indenta o primeiro parágrafo de cada seção.
-\usepackage{color}			     	% Controle das cores
+\usepackage{xcolor}			     	% Controle das cores
 \usepackage{graphicx}	         % Inclusão de gráficos
 \usepackage{epsfig,subfig}		% Inclusão de figuras
 \usepackage{microtype} 			% Melhorias de justificação
-\usepackage[brazil]{babel} % Pacote de tradução
 % ---------------------
 		
 % ---------------------
@@ -26,18 +25,19 @@
 \usepackage{longtable}					% Tabelas que se estendem por mais de uma página
 \usepackage{booktabs}					% Tabelas com multicolunas
 \usepackage{makecell}					% Notas de rodapé da tabela com várias linhas
+\usepackage{csquotes}
 % ---------------------
 
 % ---------------------
 % Pacotes de CITAÇÕES
 % ---------------------
-\usepackage[brazilian,hyperpageref]{backref}	% Paginas com as citações na bibl
-\usepackage[alf]{abntex2cite}				% Citações padrão ABNT (alfa)
+%\usepackage[brazilian,hyperpageref]{backref}	% Paginas com as citações na bibl
+%\usepackage[alf]{abntex2cite}				% Citações padrão ABNT (alfa)
 %\usepackage[num]{abntex2cite}				% Citações padrão ABNT (numericas)
 % ---------------------
 
-% Configurações de CITAÇÕES para abntex2 e ambiente de teoremas e definições
-\include{extras/conf_citacoes}
+% Configurações de ambiente de teoremas e definições
+\include{extras/conf_teorema}
 
 % Inclusão de dados para CAPA e FOLHA DE ROSTO (título, autor, orientador, etc.)
 \include{extras/dados}
