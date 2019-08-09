@@ -5,3 +5,5 @@
 _book
 tcc.rds
 *.aux
+tcc.log
+_bookdown_files

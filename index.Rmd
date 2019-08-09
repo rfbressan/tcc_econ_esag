@@ -24,7 +24,11 @@ classoption:
   - openright
   - a4paper
   - brazil
-geometry: margin=1in
+geometry: 
+  - inner=3cm
+  - top=3cm
+  - outer=2cm
+  - bottom=2cm
 ---
 
 # INTRODUÇÃO
