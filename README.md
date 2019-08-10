@@ -10,7 +10,32 @@ As melhores fontes de referência para a utilização do `bookdown` para escreve
 
 - Instalar o pacote R `tinytex` com o comando `install.packages("tinytex")`
 - Instalar o pacote Latex `tinytex` usando o próprio pacote do R. No console digite `tinytex::install_tinytex()`
-- Instalar o pacote Latex `babel-portuges` e `babel-english`. No console digite `tinytex::tlmgr_install(c("babel-portuges", "babel-english"))`
+- Instalar os pacotes Latex `babel-portuges` e `babel-english`. No console digite `tinytex::tlmgr_install(c("babel-portuges", "babel-english"))`
+- Atualizar o pacote Latex `biber` que, por algum motivo desconhecido vem desatualizado em relação ao `biblatex`. No console digite `tinytex::tlmgr("biber")`
+
+# Customizando com Latex
+
+O formato RMarkdown nada mais é que uma espécie de híbrido entre outros formatos conhecidos de texto e código em R (e até outras linguagens). Entre estes formatos de texto estão o markdown puro e o Latex. Quando o arquivo final será em formato `pdf`, o knitr transforma o arquivo `.Rmd` interpretando os códigos, em formato markdown (extensão .md) e passa este arquivo ao `pandoc`. Este por sua vez, transforma o arquivo .md para o formato do Latex (extensão .tex) que finalmente será compilado para o seu destino final, arquivo pdf.
+
+Como em um passo intermediário é criado um arquivo do Latex, é possível incluir, tanto diretamente no texto RMarkdown, comandos Latex (e.g. é possível abrir um ambiente matemático com \begin{equation}), como via arquivos `.tex` a serem incluídos em partes específicas do arquivo intermediário que será compilado posteriormente. Esta é a função da diretiva YAML `includes:`.
+
+## O arquivo `preamble.tex`
+
+A diretiva `includes:` aceita como opção a definição `in_header: arquivo.tex`. Esta diretiva faz com que o `arquivo.tex` seja **inserido** no preâmbulo de nosso arquivo Latex principal. Desta forma, no modelo de TCC apresentado, o arquivo `preamble.tex` tem a função de carregar todos os pacotes Latex necessários para a compilação do arquivo pdf final assim como determinar algumas configurações globais do trabalho, como o espaçamento entre linhas e a identação do parágrafo.
+
+O arquivo `preamble.tex` deve ser editado conforme a necessidade do usuário.
+ 
+## O arquivo `beforebody.tex`
+
+Por sua vez, a definição `before_body: beforebody.tex` faz com que o arquivo `beforebody.tex` seja **inserido** antes do corpo de texto. Ou seja, logo após a abertura do bloco \begin{document} mas antes dos capítulos. Este é o arquivo responsável por gerar todos os elementos pré-textuais e portanto, deve ser editado conforme a necessidade do usuário e o padrão exigido por sua instituição de ensino.
+
+# Dados da monografia
+
+Os dados relativos ao título, autor e data da monografia estão no YAML do arquivo `index.Rmd`. Entretanto, o restante dos dados como local, professor orientador, instituição de ensino, etc. se econtram na subpasta `/extras` no arquivo `dados.tex` e podem (devem) ser editadas diretamente neste arquivo.
+
+# Dados pré-textuais
+
+Já os dados pré-textuais do trabalho se encontram na subpasta `/pretextual` em vários arquivos, cada um com uma finalidade específica. Assim, se na sua monografia você deseja incluir uma página contendo agradecimentos, deve primeiramente descomentar no arquivo `beforebody.tex` a linha referente aos agradecimentos, `\include{pretextual/agradecimentos}` e então editar o respectivo arquivo com o seu agradecimento. A mesma lógica segue para a capa, folha de rosto, ficha catalográfica, dedicatória, folha de aprovação, epígrafe e resumos.
 
 # Editando os capítulos
 
