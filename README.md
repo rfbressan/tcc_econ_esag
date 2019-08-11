@@ -4,14 +4,22 @@ Modelo de TCC para o curso de Ciências Econômicas na UDESC/Esag utilizando RMa
 
 Este modelo faz uso dos pacotes R, `tinytex` e  `bookdown`, além daqueles que em geral já vêm instalados com a interface RStudio (altamente sugerida) como o `knitr` e `rmarkdown`.
 
-As melhores fontes de referência para a utilização do `bookdown` para escrever documentos é seu próprio livro, intitulado [bookdown: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/) e o guia de [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/). Além destes, um conhecimento introdutório de Latex é sugerido.
+As melhores fontes de referência para a utilização do `bookdown` para escrever documentos é seu próprio livro, intitulado [bookdown: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/) e o guia [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/). Além destes, um conhecimento introdutório de Latex é sugerido.
+
+Maiores detalhes de como utilizar o Latex podem ser encontrados em sua documentação oficial, [The Latex Project](https://www.latex-project.org/help/documentation/) e para os detalhes específicos da classe ABNTex2, que implementa o padrão ABNT, o site oficial é [https://www.abntex.net.br/](https://www.abntex.net.br/).
+
+# Instalação
+
+Para a "instalação" do repositório é possível fazer um _fork_ dele, copiando-o para sua própria conta no Github. Ou então copiar todos os documentos zipados e descompactar numa pasta de seu computador local, o link para baixar o zip é: [https://github.com/rfbressan/tcc_econ_esag/archive/master.zip](https://github.com/rfbressan/tcc_econ_esag/archive/master.zip) que também pode ser encontrado no botão verde acima "Clone or Download", seta para baixo e então "Download ZIP". 
 
 # Primeira coisa
+
+Após "instalar" o repositório, abra o projeto através do R (sugiro o RStudio, melhor ainda se for via rstudio.cloud) e proceda da seguinte maneira:
 
 - Instalar o pacote R `tinytex` com o comando `install.packages("tinytex")`
 - Instalar o pacote Latex `tinytex` usando o próprio pacote do R. No console digite `tinytex::install_tinytex()`
 - Instalar os pacotes Latex `babel-portuges` e `babel-english`. No console digite `tinytex::tlmgr_install(c("babel-portuges", "babel-english"))`
-- Atualizar o pacote Latex `biber` que, por algum motivo desconhecido vem desatualizado em relação ao `biblatex`. No console digite `tinytex::tlmgr("biber")`
+- Atualizar o pacote Latex `biber` que, por algum motivo desconhecido vem desatualizado em relação ao `biblatex`. No console digite `tinytex::tlmgr_install("biber")`
 
 # Customizando com Latex
 

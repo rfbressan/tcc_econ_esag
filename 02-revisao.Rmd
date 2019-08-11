@@ -1,15 +1,9 @@
 # REVISÃO DE LITERATURA {#revisao}
 
-Citações podem ser feitas como em @Gatheral2014 e também utilizando o padrão [@Gatheral2004]
+Citações podem ser feitas seguindo o padrão ABNT facilmente, por exemplo, @Gatheral2014 apresentam o modelo SSVI. Também pode-se utilizar a referência entre parênteses. O modelo SVI é muito utilizado, [@Gatheral2004].
 
-Tabelas são criadas através dos cálculos no código em R e apresentadas no documento de forma automática.
+Para que as citações sejam realizadas, é necessário ter um arquivo do tipo [BibTeX](http://www.bibtex.org/) que deve ser carregado através da diretiva `bibliography` no YAML do arquivo `index.Rmd`. Este exemplo utiliza um arquivo chamado `library.bib` mas o nome é livre (desde que tenha a extensão .bib) e podem ser carregados mais de um arquivo.
 
-```{r tabela, echo=TRUE, results="asis"}
-fit <- lm(Sepal.Width ~ Petal.Length + Petal.Width, iris)
-stargazer::stargazer(fit, title = "Resultado da regressão linear.", 
-                     suppress.errors = TRUE,
-                     header = FALSE)
-```
+Referências em formato BibTeX são facilmente obtidas no serviço [Google Acadêmico](https://scholar.google.com.br/) e normalmente nos sites dos próprios periódicos onde os artigos são publicados.
 
-Os textos de referência para RMarkdown são [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) e [bookdown: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/) ambos disponíveis de forma gratuita e leitura **obrigatória** para fazer o maior proveito das ferramentas.
-
+Para fazer uma citação basta fazer `@bibKey` para citação do tipo @Gatheral2014, ou então `[@bibKey]` para citações ao estilo [@Gatheral2004]. Uma vez citado no texto, a referência aparecerá automaticamente ao final do texto em um capítulo não numerado chamado "Referências", conforme ABNT.

@@ -10,7 +10,7 @@ output:
       in_header: preamble.tex
       before_body: beforebody.tex
       #after_body: afterbody.tex
-    latex_engine: pdflatex #xelatex
+    latex_engine: xelatex
     citation_package: biblatex
     keep_tex: yes
     toc: false
@@ -33,33 +33,98 @@ geometry:
 
 # INTRODUÇÃO
 
-Suponha que se deseja precificar uma opção de compra sobre uma ação, vamos denotar o preço desta _call_ de $f_t$. Sabemos que na data de expiração, $T$, da opção de compra seu preço será: $f_T=max(S_T - K, 0)$, onde $S_T$ é o preço da ação subjacente na data $T$ e $K$ é o preço de exercício da opção. Podemos criar um portfólio que envolva um ativo livre de risco, com preço $B_t$ e a ação objeto do derivativo, $S_t$, que recrie o mesmo valor de pagamento que a opção na data de expiração. Ou seja, criamos o portfólio de replicação $P_t=\Delta S_t + b B_t$, no qual devemos escolher os valores de $\Delta$ e $b$ de tal forma que $f_T = P_T$.
+Com este modelo de Trabalho de Conclusão de Curso no padrão exigido pelo [Manual de Trabalhos Acadêmicos da UDESC](https://udesc.br/arquivos/udesc/documentos/Manual_2017___atualizado_15351282816152_4769.pdf) é possível escrever **todo** o seu TCC utilizando a ferramenta RStudio, fazendo integração entre o texto e saídas de blocos de código em R (ou outras linguagens suportadas). Desta forma o documento estará de acordo com as melhores práticas de [pesquisa reprodutível](http://suzanamota.com/2018/02/28/fazendo-boa-ciencia-por-que-devo-tornar-minha-pesquisa-computacional-reprodutivel/).
 
-Este portfólio formado pela venda do ativo livre de risco e compra do ativo objeto é denominado **portfólio de replicação**, pois, ele fornece um fluxo de caixa igual ao derivativo que buscamos precificar. Ao adicionarmos ao portfólio de replicação a venda (ou seja, o negativo) do derivativo, temos um portfólio _hedgeado_, onde não existe mais incerteza com relação ao seu retorno esperado.
+O segredo da integração entre código [R](https://cran.r-project.org), escrita em [Markdown](https://daringfireball.net/projects/markdown/) e saída em formato pdf via [Latex](https://www.latex-project.org/) está no uso de um conjunto de pacotes criados por [Yihui Xie](https://yihui.name/en/) e alguns outros com o propóstio de integrar a linguagem R em um ambiente de pesquisa reprodutível (_reproducible research_). Abaixo, alguns dos principais pacotes necessários para esta integração:
 
-## PROBLEMA
+- knitr
+- rmarkdown
+- bookdown
+- pandoc
+- tinytex
+
+Os textos de referência para RMarkdown são [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) e [bookdown: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/) ambos disponíveis de forma gratuita e leitura **obrigatória** para fazer o maior proveito das ferramentas.
+
+Começamos demonstrando algumas das capacidades que o RMarkdown, com as extensões providas pelo bookdown, possui.
+
+## EQUAÇÕES
+
+Podemos escrever equações _inline_ simplesmente colocando o código Latex delas entre cifrões. Assim área de uma circunferência é $a=\pi r^2$.
+
+Se a equação deve tomar um parágrafo só para si, e ainda deve ser numerada, então pode-se utilizar os ambientes matemáticos do Latex normalmente. Apenas atenção ao estabelecer um _label_ para a equação, que pode ser utilizado posteriormente para referências cruzadas. Utilize o comando `(\#eq:label)`.
 
 \begin{equation}
-dS_t=\mu S_t+\sigma S_t dW_t 
-(\#eq:ds)
+a=\pi r^2 
+(\#eq:area)
 \end{equation}
 
-\lipsum[1]
+A área de uma circunferência é, portanto, determinada pela equação \@ref(eq:area).
 
-Agora é possível referenciar a equação \@ref(eq:ds) com o comando `\@ref(eq:ds)`.
+## FIGURAS
 
-## JUSTIFICATIVA
+Se o que se deseja é inserir alguma figura estática, aquelas criadas por você em algum programa de imagens ou baixadas da _internet_, então a melhor opção é utilizar a função do pacote knitr `include_graphics`, como no exemplo abaixo.
 
-Inserir código do R que gere gráficos também é muito simples.
+````markdown
+`r ''````{r label-fig, fig.cap="Legenda para a figura.", echo=FALSE}
+knitr::include_graphics("/figs/udesc-marca.png")
+```
+````
+
+O resultado deste código é a inserção do logo-tipo da UDESC no texto com a legenda dada e automaticamente numerado.
+
+```{r fig-udesc, fig.cap="Legenda para a figura.", echo=FALSE}
+knitr::include_graphics("figs/udesc-marca.png")
+```
+
+A referência a esta figura pode ser feita através do comando `\@ref(fig:label-fig)`. Por exemplo, a figura \@ref(fig:fig-udesc) é o logo da UDESC.
+
+Agora, se o que se deseja é inserir uma figura **dinâmica**, aquelas geradas pelo processamento dos dados do seu trabalho, como por exemplo uma regressão linear, basta inserir um bloco de código que gera esta figura, simples assim.
 
 ```{r grafico, echo=TRUE, fig.cap="Gráfico gerado pelo R"}
 library(ggplot2)
 
-ggplot(mpg, aes(displ, hwy, colour = class)) + 
-  geom_point()
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  geom_smooth(method = lm)
 ```
 
-## OBJETIVOS
+## CÓDIGO
 
-Link são criados facilmente na escrita com [Markdown](https://daringfireball.net/projects/markdown/syntax#link).
+Neste tipo de trabalho de pesquisa reprodutível os blocos de código são presença obrigatória. É a partir deles que os resultados do trabalho podem ser reproduzidos por outros pesquisadores ou atualizados automaticamente quando novos dados sejam coletados e processados. 
+
+Código pode ser incluído de forma _inline_ entre sinais de crase "`", ou podem ser incluídos através de um bloco completo, para processamentos mais complexos. No exemplo de inserção de figura estática vimos um bloco de código R.
+
+Um bloco de código se inicia e termina com três crases seguidas. Após as crases iniciais, entre chaves colocamos a linguagem do bloco (tipicamente r), um _label_ *único* e sem caracteres especiais ou _underline_ `_` para este bloco e uma sequência de opções separadas por vírgula.
+
+Dentre as opções que normalmente usamos estão:
+
+- **echo**: TRUE ou FALSE. O código deve ser incluído no texto?
+- **include**: TRUE ou FALSE. O resultado do código deve ser incluído no texto?
+- **eval**: TRUE ou FALSE. O código deve ser avaliado?
+- **results**: 'asis' (e outras opções). Normalmente usado em blocos que o resultado seja um texto formatado (e.g. uma tabela em Latex) e que não desejamos alterar este texto antes de enviá-lo ao pandoc.
+- **fig.cap**: Um texto que será a legenda da figura resultante do código.
+
+Uma boa prática na hora de escrever seu documento e inserir os blocos de código é que cada bloco deve realizar uma tarefa específica e ter somente um resultado. Por exemplo, devemos separar em dois blocos distintos a apresentação de uma tabela com os resultados de uma regressão e em outro bloco a figura representante desta mesma regressão.
+
+## TABELAS
+
+Tabelas são criadas através dos cálculos no código em R e apresentadas no documento de forma automática. Entretanto, de forma geral, a apresentação dos resultados de modelos no R não é visualmente amigável. Um bom pacote para transformar resultados de modelos em tabelas como as vemos em artigos científicos é o `stargazer`.
+
+O código abaixo faz uma regressão linear do tipo $Sepal.Width=\beta_0+\beta_1 Petal.Length + \beta_2 Petal.Width + \varepsilon$ com os dados do _data frame_ `iris` e apresenta os resultados formatados em uma tabela estatística.
+
+````markdown
+`r ''````{r tabela, echo=TRUE, results="asis"}
+fit <- lm(Sepal.Width ~ Petal.Length + Petal.Width, iris)
+stargazer::stargazer(fit, title = "Resultado da regressão linear.", 
+                     suppress.errors = TRUE,
+                     header = FALSE)
+```
+````
+
+```{r tabela, echo=TRUE, results="asis"}
+fit <- lm(Sepal.Width ~ Petal.Length + Petal.Width, iris)
+stargazer::stargazer(fit, title = "Resultado da regressão linear.", 
+                     suppress.errors = TRUE,
+                     header = FALSE)
+```
 
